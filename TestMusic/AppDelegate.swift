@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  TestMusic
 //
-//  Created by для интернета on 05.10.18.
-//  Copyright © 2018 для интернета. All rights reserved.
+//  Created by Nikolay Taran on 05.10.18.
+//  Copyright © 2018 Nikolay Taran. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
