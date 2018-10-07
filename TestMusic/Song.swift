@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Song {
     var artistName: String!
@@ -14,13 +15,43 @@ class Song {
     var trackName: String!
     var previewURL: URL!
     var artworkURL: URL!
-    var collectionPrice: Float!
-    var trackPrice: Float!
+    var collectionPrice: String!
+    var trackPrice: String!
     var releaseDate: String!
-    var discCount: UInt!
-    var discNumber: UInt!
-    var trackCount: UInt!
-    var trackNumber: UInt!
-    var trackTimeMillis: UInt!
+    var discCount: String!
+    var discNumber: String!
+    var trackCount: String!
+    var trackNumber: String!
+    var trackTimeMillis: String!
     var genre: String!
+    
+    var cellFont: UIFont!
+    var info: String!
+    var lineCount: Int!
+    
+    func numberOfLines(string: String) -> Int {
+        let requiredSize = NSString(string: string).boundingRect(with: CGSize(width: 320, height: DBL_MAX),
+                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                                    attributes: [NSFontAttributeName: cellFont],
+                                                                    context: nil).size
+        
+        let charSize = lroundf(Float(cellFont.lineHeight));
+        let rHeight = lroundf(Float(requiredSize.height));
+        lineCount = rHeight / charSize;
+        
+        return lineCount
+    }
+    
+    func numberOfLines(string: String, font: UIFont) -> Int {
+        let requiredSize = NSString(string: string).boundingRect(with: CGSize(width: 320, height: DBL_MAX),
+                                                                 options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                                 attributes: [NSFontAttributeName: font],
+                                                                 context: nil).size
+        
+        let charSize = lroundf(Float(font.lineHeight));
+        let rHeight = lroundf(Float(requiredSize.height));
+        lineCount = rHeight / charSize;
+        
+        return lineCount
+    }
 }

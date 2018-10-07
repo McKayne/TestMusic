@@ -17,7 +17,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private let searchBar = UITextField()
     private var isTextChanged = false
     
+    private let arrowButton = UIButton()
     private let searchResultsViewController = SearchResultsViewController()
+    
+    func startSearch(_ sender: UIButton) {
+        UIButton.animate(withDuration: 0.2, animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.975, y: 0.96)
+        },
+        completion: {finish in UIButton.animate(withDuration: 0.2, animations: {
+            sender.transform = CGAffineTransform.identity
+        })
+        })
+        
+        navigationController!.pushViewController(searchResultsViewController, animated: true)
+        view.endEditing(true)
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if !isTextChanged {
@@ -34,6 +48,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             searchBar.textColor = .gray
             searchBar.textAlignment = .left
             searchBar.text = "\tType anything to search"
+        }
+    }
+    
+    func textFieldDidChange() {
+        if searchBar.text!.characters.count > 0 {
+            arrowButton.isHidden = false
+        } else {
+            arrowButton.isHidden = true
         }
     }
     
@@ -59,22 +81,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         background.image = UIImage(named: "background.png")
         view.addSubview(background)
         
-        foreground.frame = CGRect(x: -55, y: 20, width: 415, height: 568 / 2 - 20)
+        foreground.frame = CGRect(x: -55, y: 20, width: 425, height: 568 / 2 - 20)
         foreground.image = UIImage(named: "foreground.png")
         view.addSubview(foreground)
         
         welcome1.textAlignment = .center
         welcome1.textColor = .white
-        welcome1.font = UIFont(name: "SFProDisplay-Ultralight", size: 20.0)
+        welcome1.font = UIFont(name: "SFProDisplay-Ultralight", size: 34.0)
         welcome1.text = "FIND YOUR MUSIC"
         
         welcome2.textAlignment = .center
         welcome2.textColor = .white
-        welcome2.font = UIFont(name: "SFProDisplay-Ultralight", size: 20.0)
+        welcome2.font = UIFont(name: "SFProDisplay-Ultralight", size: 34.0)
         welcome2.text = "ON ITUNES"
         
         searchBar.delegate = self
         searchBar.backgroundColor = .clear
+        searchBar.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
         
         searchBar.layer.cornerRadius = 20.0
         searchBar.layer.borderWidth = 2.0
@@ -84,8 +107,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         searchBar.textColor = .gray
         searchBar.text = "\tType anything to search"
         
+        arrowButton.backgroundColor = .clear
+        arrowButton.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
+        arrowButton.addTarget(self, action: #selector(startSearch(_:)), for: .touchUpInside)
+        arrowButton.setTitle("→", for: .normal)
+        searchBar.rightView = arrowButton
+        searchBar.rightViewMode = .always
+        arrowButton.isHidden = true
+        
         view.addSubview(welcome1)
-        ViewController.performAutolayoutConstants(subview: welcome1, view: view, left: 0.0, right: 0.0, top: 568.0 / 4, bottom: -568.0 / 2)
+        ViewController.performAutolayoutConstants(subview: welcome1, view: view, left: 0.0, right: 0.0, top: 568.0 / 4 - 10, bottom: -568.0 / 2 - 10)
         
         view.addSubview(welcome2)
         ViewController.performAutolayoutConstants(subview: welcome2, view: view, left: 0.0, right: 0.0, top: 568.0 / 4 + 20, bottom: -568.0 / 2 + 20)
@@ -101,12 +132,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         navigationController!.navigationBar.addGestureRecognizer(navBarGestureRecognizer)
         navBarGestureRecognizer.cancelsTouchesInView = false
         
-        let backItem = UIBarButtonItem()
+        let bt = UIButton(type: .custom)
+        bt.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        bt.backgroundColor = .red
+        bt.setTitle("111", for: .normal)
+        
+        let backItem = UIBarButtonItem(customView: bt)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        label.text = "?"
+        label.textColor = .red
+        
         backItem.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "SFProDisplay-Ultralight", size: 20.0)!, NSForegroundColorAttributeName: UIColor.white], for: .normal)
         backItem.title = "Summer"
+        
+        var back = UIImage(named: "back.png")!
+        back = imageWithImage(image: back, scaledToSize: CGSize(width: 6, height: 10))
+        
+        navigationController!.navigationBar.backIndicatorImage = back
+        navigationController!.navigationBar.backIndicatorTransitionMaskImage = back
         navigationController!.navigationBar.topItem!.backBarButtonItem = backItem
         
         navigationController?.navigationBar.tintColor = .white
+    }
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -116,8 +170,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
-        
-        navigationController!.pushViewController(searchResultsViewController, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

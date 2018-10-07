@@ -11,6 +11,7 @@ import UIKit
 
 class SearchResultsDataSource: NSObject, UITableViewDataSource {
     
+    var searchResultsViewController: SearchResultsViewController!
     var filteredSongs: [Song] = []
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -18,6 +19,15 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if filteredSongs.count == 0 {
+            tableView.isHidden = true
+            searchResultsViewController.notFound1.isHidden = false
+            searchResultsViewController.notFound2.isHidden = false
+        } else{
+            tableView.isHidden = false
+            searchResultsViewController.notFound1.isHidden = true
+            searchResultsViewController.notFound2.isHidden = true
+        }
         return filteredSongs.count
     }
     
@@ -26,24 +36,18 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
         cell.backgroundColor = .clear
         
         cell.textLabel?.font = UIFont(name: "SFProDisplay-Ultralight", size: 20.0)
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = UIColor(red: 85.0 / 255.0, green: 89.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0)
         cell.textLabel?.text = String(indexPath.row + 1)
         
         let artistLabel = UILabel()
+        artistLabel.numberOfLines = 0
         artistLabel.font = UIFont(name: "SFProDisplay-Ultralight", size: 12.0)
-        artistLabel.textColor = .white
-        artistLabel.text = filteredSongs[indexPath.row].artistName
-        
-        let songLabel = UILabel()
-        songLabel.font = UIFont(name: "SFProDisplay-Ultralight", size: 12.0)
-        songLabel.textColor = .white
-        songLabel.text = "\(filteredSongs[indexPath.row].trackName ?? ""), \(filteredSongs[indexPath.row].collectionName ?? "")"
+        artistLabel.textColor = UIColor(red: 224.0 / 255.0, green: 225.0 / 255.0, blue: 229.0 / 255.0, alpha: 1.0)
+        artistLabel.text = filteredSongs[indexPath.row].info
+        artistLabel.sizeToFit()
         
         cell.contentView.addSubview(artistLabel)
-        ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 50.0, right: 0.0, top: 0, bottom: -25)
-        
-        cell.contentView.addSubview(songLabel)
-        ViewController.performAutolayoutConstants(subview: songLabel, view: cell.contentView, left: 50.0, right: 0.0, top: 25, bottom: 0)
+        ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 50.0, right: 0.0, top: 0, bottom: 0)
         
         return cell
     }
