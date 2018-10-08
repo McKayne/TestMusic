@@ -144,8 +144,9 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
             playerButton.addTarget(self, action: #selector(playPreview(sender:)), for: .touchUpInside)
             cell.contentView.addSubview(playerButton)
             
-            ViewController.performAutolayoutConstants(subview: playerButton, view: cell.contentView, left: 10, right: -view.frame.width + 40, top: 0, bottom: 0)
-            ViewController.performAutolayoutConstants(subview: playerStatus, view: cell.contentView, left: 60, right: 0, top: 0, bottom: 0)
+            let diff = (view.frame.width - 320.0) / 2.0 * 0.15
+            ViewController.performAutolayoutConstants(subview: playerButton, view: cell.contentView, left: 10 + diff, right: -view.frame.width + 40 + diff, top: 0, bottom: 0)
+            ViewController.performAutolayoutConstants(subview: playerStatus, view: cell.contentView, left: 60 + diff, right: 0, top: 0, bottom: 0)
         case 3:
             activity.isHidden = false
             activity.color = .white
