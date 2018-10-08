@@ -31,8 +31,8 @@ class Song {
     var lineCount: Int!
     
     // Число строк, занимаемых строкой информации в mutiline UILabel
-    func numberOfLines(string: String) -> Int {
-        let requiredSize = NSString(string: string).boundingRect(with: CGSize(width: 320, height: DBL_MAX),
+    func numberOfLines(viewWidth: Double, string: String) -> Int {
+        let requiredSize = NSString(string: string).boundingRect(with: CGSize(width: viewWidth, height: DBL_MAX),
                                                                     options: NSStringDrawingOptions.usesLineFragmentOrigin,
                                                                     attributes: [NSFontAttributeName: cellFont],
                                                                     context: nil).size
@@ -45,8 +45,8 @@ class Song {
     }
     
     // Число строк, занимаемых строкой информации в mutiline UILabel при условии использования конкретного шрифта
-    func numberOfLines(string: String, font: UIFont) -> Int {
-        let requiredSize = NSString(string: string).boundingRect(with: CGSize(width: 320, height: DBL_MAX),
+    func numberOfLines(viewWidth: Double, string: String, font: UIFont) -> Int {
+        let requiredSize = NSString(string: string).boundingRect(with: CGSize(width: viewWidth, height: DBL_MAX),
                                                                  options: NSStringDrawingOptions.usesLineFragmentOrigin,
                                                                  attributes: [NSFontAttributeName: font],
                                                                  context: nil).size

@@ -180,7 +180,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UIText
                                 song.info = "\(song.trackName ?? "")\n\(song.artistName ?? ""), \(song.collectionName ?? "")" // инфо о песне в виде "Track by Artist"
                                 song.cellFont = UIFont(name: "HelveticaNeue-Thin", size: 12.0) // шрифт, которым далее будет отображаться инфо в UITableViewCell
                                 
-                                song.lineCount = song.numberOfLines(string: song.info) // количество строк, который будет занимать инфо в multiline UILabel
+                                song.lineCount = song.numberOfLines(viewWidth: Double(view.frame.width), string: song.info) // количество строк, который будет занимать инфо в multiline UILabel
                                 
                                 songs.append(song) // добавление инфо о песне в массив
                             }
@@ -241,14 +241,14 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UIText
         view.addGestureRecognizer(tapRecognizer)
         
         // Фоновое изображение
-        background.frame = CGRect(x: 0, y: 0, width: 320, height: 568)
+        background.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         background.image = UIImage(named: "background.png")
         view.addSubview(background)
         
         // Индикатор загрузки
         activity.color = .white
         view.addSubview(activity)
-        ViewController.performAutolayoutConstants(subview: activity, view: view, left: 320.0 / 2 - 15, right: -320.0 / 2 + 15, top: 568.0 / 2 - 15, bottom: -568.0 / 2 + 15)
+        ViewController.performAutolayoutConstants(subview: activity, view: view, left: view.frame.width / 2 - 15, right: -view.frame.width / 2 + 15, top: view.frame.height / 2 - 15, bottom: -view.frame.height / 2 + 15)
         
         // UIlabel с количеством подходящих (найденных/отфильтрованных) песен
         songsFound.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
@@ -291,19 +291,19 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UIText
         resultsTableView.tableFooterView = UIView(frame: .zero)
         
         view.addSubview(songsFound)
-        ViewController.performAutolayoutConstants(subview: songsFound, view: view, left: 27.0, right: 0.0, top: 30, bottom: -470)
+        ViewController.performAutolayoutConstants(subview: songsFound, view: view, left: 27.0, right: 0.0, top: 60, bottom: -view.frame.height + 90)
         
         view.addSubview(notFound1)
-        ViewController.performAutolayoutConstants(subview: notFound1, view: view, left: 0.0, right: 0.0, top: 568.0 / 4 - 10, bottom: -568.0 / 2 - 10)
+        ViewController.performAutolayoutConstants(subview: notFound1, view: view, left: 0.0, right: 0.0, top: view.frame.height / 4 - 10, bottom: -view.frame.height / 2 - 10)
         
         view.addSubview(notFound2)
-        ViewController.performAutolayoutConstants(subview: notFound2, view: view, left: 0.0, right: 0.0, top: 568.0 / 4 + 20, bottom: -568.0 / 2 + 20)
+        ViewController.performAutolayoutConstants(subview: notFound2, view: view, left: 0.0, right: 0.0, top: view.frame.height / 4 + 20, bottom: -view.frame.height / 2 + 20)
         
         view.addSubview(filterBar)
-        ViewController.performAutolayoutConstants(subview: filterBar, view: view, left: 20.0, right: -20.0, top: 100, bottom: -430)
+        ViewController.performAutolayoutConstants(subview: filterBar, view: view, left: 20.0, right: -20.0, top: 100, bottom: -view.frame.height + 150)
         
         view.addSubview(resultsTableView)
-        ViewController.performAutolayoutConstants(subview: resultsTableView, view: view, left: 0.0, right: 0.0, top: 150, bottom: 0.0)
+        ViewController.performAutolayoutConstants(subview: resultsTableView, view: view, left: 0.0, right: 0.0, top: 160, bottom: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {

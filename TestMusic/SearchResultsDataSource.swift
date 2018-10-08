@@ -53,7 +53,7 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
         artistLabel.sizeToFit()
         
         cell.contentView.addSubview(artistLabel)
-        ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 50.0, right: 0.0, top: 0, bottom: 0)
+        ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 80.0, right: 0.0, top: 0, bottom: 0)
         
         return cell
     }

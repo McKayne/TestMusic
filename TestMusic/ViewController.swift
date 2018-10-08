@@ -122,11 +122,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTap)))
         
         // Фоновое изображение
-        background.frame = CGRect(x: 0, y: 0, width: 320, height: 568)
+        background.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         background.image = UIImage(named: "background.png")
         view.addSubview(background)
         
-        foreground.frame = CGRect(x: -55, y: 20, width: 425, height: 568 / 2 - 20)
+        foreground.frame = CGRect(x: -view.frame.width * 0.175, y: 20, width: view.frame.width * 1.328125, height: view.frame.height / 2 - 20)
         foreground.image = UIImage(named: "foreground.png")
         view.addSubview(foreground)
         
@@ -165,13 +165,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         arrowButton.isHidden = true
         
         view.addSubview(welcome1)
-        ViewController.performAutolayoutConstants(subview: welcome1, view: view, left: 0.0, right: 0.0, top: 568.0 / 4 - 10, bottom: -568.0 / 2 - 10)
+        ViewController.performAutolayoutConstants(subview: welcome1, view: view, left: 0.0, right: 0.0, top: view.frame.height / 4 - 10, bottom: -view.frame.height / 2 - 10)
         
         view.addSubview(welcome2)
-        ViewController.performAutolayoutConstants(subview: welcome2, view: view, left: 0.0, right: 0.0, top: 568.0 / 4 + 20, bottom: -568.0 / 2 + 20)
+        ViewController.performAutolayoutConstants(subview: welcome2, view: view, left: 0.0, right: 0.0, top: view.frame.height / 4 + 20, bottom: -view.frame.height / 2 + 20)
         
         view.addSubview(searchBar)
-        ViewController.performAutolayoutConstants(subview: searchBar, view: view, left: 20.0, right: -20.0, top: 260, bottom: -270)
+        ViewController.performAutolayoutConstants(subview: searchBar, view: view, left: 20.0, right: -20.0, top: view.frame.height / 2 - 30, bottom: -view.frame.height / 2 + 50 - 30)
         
         // Делаем фон navigationBar прозрачным
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)

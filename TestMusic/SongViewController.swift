@@ -43,10 +43,10 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch indexPath.row {
         case 0:
             let text = "\(song.trackName ?? "") by \(song.artistName ?? "")"
-            return CGFloat(song.numberOfLines(string: text, font: UIFont(name: "HelveticaNeue-Thin", size: 20.0)!) + 2) * 25.0 // возвращает высоту ячейки по формуле (число строк в строке(название + исполнитель) + 2) * 25
+            return CGFloat(song.numberOfLines(viewWidth: Double(view.frame.width), string: text, font: UIFont(name: "HelveticaNeue-Thin", size: 20.0)!) + 2) * 25.0 // возвращает высоту ячейки по формуле (число строк в строке(название + исполнитель) + 2) * 25
         case 1:
             let text = "\(song.collectionName ?? ""), 2014" // т.к. год всегда состоит из 4 символов, конкретный год здесь не имеет значения
-            return CGFloat(song.numberOfLines(string: text, font: UIFont(name: "HelveticaNeue-Thin", size: 20.0)!) + 2) * 25.0 // возвращает высоту ячейки по формуле (число строк в строке(альбом + год) + 2) * 25
+            return CGFloat(song.numberOfLines(viewWidth: Double(view.frame.width), string: text, font: UIFont(name: "HelveticaNeue-Thin", size: 20.0)!) + 2) * 25.0 // возвращает высоту ячейки по формуле (число строк в строке(альбом + год) + 2) * 25
         case 3:
             return 300 // высота ячейки артворка
         default:
@@ -144,7 +144,7 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
             playerButton.addTarget(self, action: #selector(playPreview(sender:)), for: .touchUpInside)
             cell.contentView.addSubview(playerButton)
             
-            ViewController.performAutolayoutConstants(subview: playerButton, view: cell.contentView, left: 10, right: -280, top: 0, bottom: 0)
+            ViewController.performAutolayoutConstants(subview: playerButton, view: cell.contentView, left: 10, right: -view.frame.width + 40, top: 0, bottom: 0)
             ViewController.performAutolayoutConstants(subview: playerStatus, view: cell.contentView, left: 60, right: 0, top: 0, bottom: 0)
         case 3:
             activity.isHidden = false
@@ -152,7 +152,7 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
             activity.startAnimating()
             
             cell.contentView.addSubview(activity)
-            ViewController.performAutolayoutConstants(subview: activity, view: cell.contentView, left: 320.0 / 2 - 15, right: -320.0 / 2 + 15, top: 300.0 / 2 - 15, bottom: -300.0 / 2 + 15)
+            ViewController.performAutolayoutConstants(subview: activity, view: cell.contentView, left: view.frame.width / 2 - 15, right: -view.frame.width / 2 + 15, top: 300.0 / 2 - 15, bottom: -300.0 / 2 + 15)
             
             
             cell.contentView.addSubview(artwork)
@@ -198,7 +198,7 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         // Фоновое изображение
-        background.frame = CGRect(x: 0, y: 0, width: 320, height: 568)
+        background.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         background.image = UIImage(named: "background.png")
         view.addSubview(background)
         
@@ -206,7 +206,7 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
         genre.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
         genre.textColor = .white
         view.addSubview(genre)
-        ViewController.performAutolayoutConstants(subview: genre, view: view, left: 27.0, right: 0.0, top: 30, bottom: -470)
+        ViewController.performAutolayoutConstants(subview: genre, view: view, left: 27.0, right: 0.0, top: 60, bottom: -view.frame.height + 90)
         
         infoTableView.backgroundColor = .clear
         infoTableView.allowsSelection = false
@@ -215,7 +215,7 @@ class SongViewController: UIViewController, UITableViewDataSource, UITableViewDe
         infoTableView.delegate = self
         infoTableView.dataSource = self
         view.addSubview(infoTableView)
-        ViewController.performAutolayoutConstants(subview: infoTableView, view: view, left: 0.0, right: 0.0, top: 70, bottom: 0)
+        ViewController.performAutolayoutConstants(subview: infoTableView, view: view, left: 0.0, right: 0.0, top: 90, bottom: 0)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
