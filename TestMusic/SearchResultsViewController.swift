@@ -141,7 +141,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UIText
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // Получение ответа API в виде JSON, с последующей его десеариализацией в виде массива объектов Song, содержащих инфо о песне
+    // Получение ответа API в виде JSON, с последующей его десериализацией в виде массива объектов Song, содержащих инфо о песне
     func parseJSON() {
         let request = searchText.replacingOccurrences(of: " ", with: "+").lowercased() // строка запроса в виде "my+compound+request"
         

@@ -54,6 +54,7 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
         
         cell.contentView.addSubview(artistLabel)
         
+        // cell left margin зависит от ширины экрана
         let diff = (searchResultsViewController.view.frame.width - 320.0) / 2.0 * 0.15
         ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 50.0 + diff, right: 0.0, top: 0, bottom: 0)
         
