@@ -17,7 +17,6 @@
 		7FA82B48216788DF0002FA27 /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7FA82B47216788DF0002FA27 /* SF-Pro-Display-Ultralight.otf */; };
 		7FA82B4C216797D30002FA27 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA82B4B216797D30002FA27 /* SearchResultsViewController.swift */; };
 		7FA82B4E2167C49D0002FA27 /* SearchResultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA82B4D2167C49D0002FA27 /* SearchResultsDataSource.swift */; };
-		7FA82B50216825D10002FA27 /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7FA82B4F216825D10002FA27 /* 1.txt */; };
 		7FA82B5221682EE80002FA27 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA82B5121682EE80002FA27 /* Song.swift */; };
 		7FA82B5621685C0D0002FA27 /* foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA82B5521685C0D0002FA27 /* foreground.png */; };
 		7FA82B58216861900002FA27 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA82B57216861900002FA27 /* background.png */; };
@@ -59,7 +58,6 @@
 		7FA82B47216788DF0002FA27 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = SOURCE_ROOT; };
 		7FA82B4B216797D30002FA27 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		7FA82B4D2167C49D0002FA27 /* SearchResultsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsDataSource.swift; sourceTree = "<group>"; };
-		7FA82B4F216825D10002FA27 /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.txt; sourceTree = SOURCE_ROOT; };
 		7FA82B5121682EE80002FA27 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		7FA82B5521685C0D0002FA27 /* foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foreground.png; sourceTree = SOURCE_ROOT; };
 		7FA82B57216861900002FA27 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = SOURCE_ROOT; };
@@ -124,7 +122,6 @@
 				7FA82B592168E8D50002FA27 /* back.png */,
 				7FA82B5521685C0D0002FA27 /* foreground.png */,
 				7FA82B4B216797D30002FA27 /* SearchResultsViewController.swift */,
-				7FA82B4F216825D10002FA27 /* 1.txt */,
 				7FA82B4D2167C49D0002FA27 /* SearchResultsDataSource.swift */,
 				7FA82B1D216782EC0002FA27 /* Main.storyboard */,
 				7FA82B20216782EC0002FA27 /* Assets.xcassets */,
@@ -262,7 +259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FA82B50216825D10002FA27 /* 1.txt in Resources */,
 				7FA82B24216782EC0002FA27 /* LaunchScreen.storyboard in Resources */,
 				7FA82B58216861900002FA27 /* background.png in Resources */,
 				7FA82B21216782EC0002FA27 /* Assets.xcassets in Resources */,
@@ -550,6 +546,7 @@
 				7FA82B40216782ED0002FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7FA82B41216782ED0002FA27 /* Build configuration list for PBXNativeTarget "TestMusicTests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +555,7 @@
 				7FA82B43216782ED0002FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7FA82B44216782ED0002FA27 /* Build configuration list for PBXNativeTarget "TestMusicUITests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +564,7 @@
 				7FA82B46216782ED0002FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
