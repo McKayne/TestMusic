@@ -171,7 +171,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ViewController.performAutolayoutConstants(subview: welcome2, view: view, left: 0.0, right: 0.0, top: view.frame.height / 4 + 20, bottom: -view.frame.height / 2 + 20)
         
         view.addSubview(searchBar)
-        ViewController.performAutolayoutConstants(subview: searchBar, view: view, left: 20.0, right: -20.0, top: view.frame.height / 2 - 30, bottom: -view.frame.height / 2 + 50 - 30)
+        ViewController.performAutolayoutConstants(subview: searchBar, view: view, left: 20.0, right: -20.0, top: view.frame.height / 2 - 30, bottom: -view.frame.height / 2 + 40 - 30)
         
         // Делаем фон navigationBar прозрачным
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)

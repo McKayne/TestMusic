@@ -40,7 +40,7 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.backgroundColor = .clear
-        
+
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 20.0)
         cell.textLabel?.textColor = UIColor(red: 85.0 / 255.0, green: 89.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0)
         cell.textLabel?.text = String(indexPath.row + 1)
@@ -53,7 +53,9 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
         artistLabel.sizeToFit()
         
         cell.contentView.addSubview(artistLabel)
-        ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 80.0, right: 0.0, top: 0, bottom: 0)
+        
+        let diff = (searchResultsViewController.view.frame.width - 320.0) / 2.0 * 0.15
+        ViewController.performAutolayoutConstants(subview: artistLabel, view: cell.contentView, left: 50.0 + diff, right: 0.0, top: 0, bottom: 0)
         
         return cell
     }
